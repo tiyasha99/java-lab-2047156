@@ -1,5 +1,4 @@
 import java.util.*;
-import java.lang.*;
 
 //Importing packages
 class Indigo // Declaring class
@@ -8,7 +7,7 @@ class Indigo // Declaring class
     private int n; // Variable n accessible only within the class Indigo
 
     public void seats(String b_seat_id[], String e_seat_id[]) {
-        int i, s1, s2, ch, te, tb, c1, c2, j, k;
+        int i, s1, s2, ch, te, tb, c1, c2;
         j = 0;
         k = 0;
         n = 40; // Total number of seats
