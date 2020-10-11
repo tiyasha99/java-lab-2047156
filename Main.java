@@ -5,7 +5,8 @@ class Indigo // Declaring class
 {
     public char seat = (char) 0;
     private int n; // Variable n accessible only within the class Indigo
-
+    public String e_food,b_food;
+    public int yes_no;
 
     public void seats(String b_seat_id[], String e_seat_id[]) {
         int i, s1, s2, ch, te, tb, c1, c2;
@@ -78,15 +79,14 @@ class Indigo // Declaring class
 
     // public char seat="A";
     Indigo(char s) {
-        this.seat = s;
+        this.seat = s;							//Co
     }
    Indigo(String e_foodtype,String b_foodtype,int food_avail)
 	{
-		String e_food,b_food;
-		int yes_no;
-		e_food=e_foodtype;
-		b_food=b_foodtype;
-		yes_no=food_avail;
+		
+		this.e_food=e_foodtype;
+		this.b_food=b_foodtype;
+		this.yes_no=food_avail;
 	}
    public void food_avail(int ans,int arr[])
 	{
@@ -102,8 +102,14 @@ class Indigo // Declaring class
 
 }
 public class Main{
+	
     public static void main(String args[]) // main function
     {
+	for(int i=0;i<args.length;i++)
+	{
+		System.out.println(args[i]);
+		
+	}
         int j = 0, k = 0,ans_food;
         char s = (char) 0;
 	String ans_type;
@@ -138,9 +144,9 @@ public class Main{
 	    b[i].food_avail(ans_food,e_classfood);
 	    if(ans_food==1)
 	    {
-		System.out.println("Veg or Nonveg platter?");
+		System.out.println("Options:"+obj2.b_food);
 	    	ans_type=input.next();
-	    	b[i].food_avail(ans_type,e_foodtype);
+	    	b[i].food_avail(ans_type,b_foodtype);
 	    }
         }
 	System.out.println("Hello Economy Passengers!");
@@ -156,7 +162,7 @@ public class Main{
 	    e[i].food_avail(ans_food,e_classfood);
 	    if(ans_food==1)
 	    {
-		System.out.println("Veg or Nonveg platter?");
+		System.out.println("Options:"+obj2.e_food);
 	    	ans_type=input.next();
 	    	e[i].food_avail(ans_type,e_foodtype);
 	    }
