@@ -1,14 +1,18 @@
 import java.util.*;
 
 //Importing packages
-class Indigo // Declaring class
+class Indigo extends Customer// Declaring class
 {
     public char seat = (char) 0;
     private int n; // Variable n accessible only within the class Indigo
     public String e_food,b_food;
     public int yes_no;
-
+    public void greeting()
+{
+	  System.out.println(a);
+}
     public void seats(String b_seat_id[], String e_seat_id[]) {
+	
         int i, s1, s2, ch, te, tb, c1, c2;
         n = 4; // Total number of seats
         s1 = 2; // seats for economy class
@@ -18,7 +22,7 @@ class Indigo // Declaring class
         String se, sb, seatno_economy, seatno_business; // booking ids an
         int c = 0;
         while (n > 0) {
-            System.out.println("Hello!!");
+            //System.out.println("Hello!!");
             System.out.println("Please select your class:");
             System.out.println("Press 1 for Economy Class");
             System.out.println("Press 2 for Business Class");
@@ -43,6 +47,8 @@ class Indigo // Declaring class
 
                     }
                     System.out.println("Your booking id is:" + se);
+		    super.readName();
+		    super.phone();
                     c++;
 
                 } else {
@@ -79,7 +85,7 @@ class Indigo // Declaring class
 
     // public char seat="A";
     Indigo(char s) {
-        this.seat = s;							//Co
+        this.seat = s;							
     }
    Indigo(String e_foodtype,String b_foodtype,int food_avail)
 	{
@@ -115,6 +121,7 @@ public class Main{
 	String ans_type;
         Indigo obj1 = new Indigo(s); // Creating object
 	Indigo obj2=new Indigo("Veg/Nonveg","Veg/Nonveg",0);
+	//Cargo obj3=new Cargo();
         Indigo[] b = new Indigo[20];
         Indigo[] e = new Indigo[20];
         String[] b_seat_id = new String[2]; /* Declaring string arrays for economy and business classes */
@@ -123,6 +130,7 @@ public class Main{
 	String [] e_foodtype=new String[2];
 	int [] b_classfood=new int[2];
 	int [] e_classfood=new int[2];
+	obj1.greeting();
         obj1.seats(b_seat_id, e_seat_id); // Calling function
         while (j < 2) {
             for (char i = 65; i < 70; i++) {
@@ -136,6 +144,7 @@ public class Main{
 	System.out.println("Hello Business Passengers!");
         System.out.println("Please check your ids and seat numbers for Business class");
         for (int i = 0; i < 2; i++) {
+	    //b[i].readName();
             System.out.print(b_seat_id[i] + "-");
             System.out.println(b[i].seat);
 	    System.out.println("Do you want to avail food?\n1-yes\n 2-no");
@@ -170,11 +179,13 @@ public class Main{
 	Cargo obj3=new Cargo();
 	Cargo.luggage();
 	obj3.cargo();
+	Date obj=new Select();
+	obj.dates();
 	
 
     } // End of main
 } // End of class
-class Cargo
+class Cargo extends Customer
 {
 	static int cg,w;
 	static
@@ -200,4 +211,32 @@ class Cargo
 		System.out.println("Balance weight:"+cg);
 	}
 	
+}
+class Customer
+{
+	Scanner input=new Scanner(System.in);
+	final String a="WELCOME";
+	void readName()
+	{
+		System.out.print("Enter your name:");
+		String name=input.next();
+	}
+	void phone()
+	{
+		System.out.print("Enter your phone number:");
+		int num=input.nextInt();
+	}
+}
+
+abstract class Date{
+	abstract void dates();
+}
+class Select extends Date
+{
+	Scanner input=new Scanner(System.in);
+	void dates()
+	{
+		System.out.print("Enter date of departure in dd/mm/yyyy format:");
+		String date=input.next();
+	}
 }
