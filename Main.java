@@ -73,6 +73,8 @@ class Indigo extends Customer// Declaring class
                     }
                     c++;
                     System.out.println("Your booking id is:" + sb);
+		    super.readName();
+		    super.phone();
 
                 } else {
                     System.out.println("SORRY! All Business seats are BOOKED");
@@ -218,8 +220,14 @@ class Customer
 	final String a="WELCOME";
 	void readName()
 	{
-		System.out.print("Enter your name:");
-		String name=input.next();
+		System.out.print("Enter your first name:");
+		String fname=input.next();
+		StringBuffer sb=new StringBuffer(fname);
+		sb.append(" ");
+		System.out.print("Enter your last name:"); 
+		String lname=input.next();
+		sb.append(lname);
+		
 	}
 	void phone()
 	{
