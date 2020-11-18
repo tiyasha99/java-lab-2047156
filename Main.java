@@ -1,8 +1,10 @@
 import java.util.*;
+import hello.welcome;
 
 //Importing packages
 class Indigo extends Customer// Declaring class
 {
+    final String a="Good Morning";
     public char seat = (char) 0;
     private int n; // Variable n accessible only within the class Indigo
     public String e_food,b_food;
@@ -22,6 +24,7 @@ class Indigo extends Customer// Declaring class
         String se, sb, seatno_economy, seatno_business; // booking ids an
         int c = 0;
         while (n > 0) {
+		try{
             //System.out.println("Hello!!");
             System.out.println("Please select your class:");
             System.out.println("Press 1 for Economy Class");
@@ -31,9 +34,10 @@ class Indigo extends Customer// Declaring class
             // System.out.println("n="+n);
             if (ch == 1) {
                 System.out.println("Number of seats available:" + s1);
+		
                 System.out.println("How many travellers?");
                 te = input.nextInt();
-
+		
                 if (te <= s1) {
                     se = Integer.toString(c);
                     se = "E00" + se;
@@ -50,11 +54,13 @@ class Indigo extends Customer// Declaring class
 		    super.readName();
 		    super.phone();
                     c++;
-
-                } else {
+		}
+		else {
                     System.out.println("SORRY! All Economy seats are BOOKED");
+
+                } 
                 }
-            } else if (ch == 2) {
+            else if (ch == 2) {
                 System.out.println("Number of seats available:" + s2);
                 System.out.println("How many travellers?");
                 tb = input.nextInt();
@@ -82,6 +88,12 @@ class Indigo extends Customer// Declaring class
             } else {
                 System.out.println("Invalid input");
             }
+	}
+	catch(InputMismatchException e)
+	{
+		System.out.println("Invalid Input! Please enter again.");
+		System.out.println(e);
+	}
         } // End of while loop
     }// end of function
 
@@ -113,6 +125,9 @@ public class Main{
 	
     public static void main(String args[]) // main function
     {
+	welcome obj5=new welcome();
+	obj5.msg();
+	Cargo obj3=new Cargo();
 	for(int i=0;i<args.length;i++)
 	{
 		System.out.println(args[i]);
@@ -159,10 +174,11 @@ public class Main{
 	    	ans_type=input.next();
 	    	b[i].food_avail(ans_type,b_foodtype);
 	    }
+		//System.out.println("Enter luggage weight
         }
 	System.out.println("Hello Economy Passengers!");
         System.out.println("Please check your ids for Economy class");
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
 	    
 	    
             System.out.print(e_seat_id[i] + "-");
@@ -177,12 +193,20 @@ public class Main{
 	    	ans_type=input.next();
 	    	e[i].food_avail(ans_type,e_foodtype);
 	    }
+		
+	
 	}
-	Cargo obj3=new Cargo();
+	
 	Cargo.luggage();
 	obj3.cargo();
 	Date obj=new Select();
 	obj.dates();
+	Cost obj4=new Cost();
+	obj4.b_price();
+	obj4.e_price();
+
+		
+	
 	
 
     } // End of main
@@ -217,7 +241,7 @@ class Cargo extends Customer
 class Customer
 {
 	Scanner input=new Scanner(System.in);
-	final String a="WELCOME";
+	//final String a="WELCOME";
 	void readName()
 	{
 		System.out.print("Enter your first name:");
@@ -248,3 +272,27 @@ class Select extends Date
 		String date=input.next();
 	}
 }
+interface Price
+{
+	float convenient_fee=500;
+	public void b_price();
+	public void e_price();
+}
+class Cost implements Price
+{
+	public void b_price()
+	{
+		float business_price=5678;
+		float gst=564;
+		float total=business_price + gst;
+		System.out.println("Price of each seat of business class:"+total);
+	}
+	public void e_price()
+	{
+		float economy_price=2678;
+		float gst=564;
+		float total=economy_price + gst;
+		System.out.println("Price of each seat of economics class:"+total);
+	}
+}
+	
