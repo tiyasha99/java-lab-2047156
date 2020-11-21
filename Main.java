@@ -1,6 +1,6 @@
 import java.util.*;
 import hello.welcome;
-
+import car.*;
 //Importing packages
 class Indigo extends Customer// Declaring class
 {
@@ -35,8 +35,12 @@ class Indigo extends Customer// Declaring class
             if (ch == 1) {
                 System.out.println("Number of seats available:" + s1);
 		
-                System.out.println("How many travellers?");
-                te = input.nextInt();
+                
+		
+		
+			System.out.println("How many travellers?");
+                	te = input.nextInt();
+			
 		
                 if (te <= s1) {
                     se = Integer.toString(c);
@@ -125,22 +129,24 @@ public class Main{
 	
     public static void main(String args[]) // main function
     {
-	welcome obj5=new welcome();
-	obj5.msg();
+	int n = 2; // Number of threads 
+        
+	//welcome obj5=new welcome();
+	//obj5.msg();
 	Cargo obj3=new Cargo();
 	for(int i=0;i<args.length;i++)
 	{
 		System.out.println(args[i]);
 		
 	}
-        int j = 0, k = 0,ans_food;
+        int j = 0, k = 0,ans_food,Age;
         char s = (char) 0;
 	String ans_type;
         Indigo obj1 = new Indigo(s); // Creating object
 	Indigo obj2=new Indigo("Veg/Nonveg","Veg/Nonveg",0);
 	//Cargo obj3=new Cargo();
-        Indigo[] b = new Indigo[20];
-        Indigo[] e = new Indigo[20];
+        Indigo[] b = new Indigo[2];
+        Indigo[] e = new Indigo[2];
         String[] b_seat_id = new String[2]; /* Declaring string arrays for economy and business classes */
         String[] e_seat_id = new String[2];
 	String [] b_foodtype=new String[2];
@@ -149,6 +155,7 @@ public class Main{
 	int [] e_classfood=new int[2];
 	obj1.greeting();
         obj1.seats(b_seat_id, e_seat_id); // Calling function
+	try{
         while (j < 2) {
             for (char i = 65; i < 70; i++) {
 
@@ -157,15 +164,31 @@ public class Main{
                 j++;
             }
         }
+	}
+	catch(ArrayIndexOutOfBoundsException exc)
+	{
         System.out.println("ALL SEATS ARE BOOKED.");
 	System.out.println("Hello Business Passengers!");
         System.out.println("Please check your ids and seat numbers for Business class");
         for (int i = 0; i < 2; i++) {
 	    //b[i].readName();
+	     welcome object = new welcome(); 
+            object.start(); 
             System.out.print(b_seat_id[i] + "-");
-            System.out.println(b[i].seat);
-	    System.out.println("Do you want to avail food?\n1-yes\n 2-no");
 	    Scanner input=new Scanner(System.in);
+            System.out.println(b[i].seat);
+	    System.out.println("Please Enter the age:");
+	    Age=input.nextInt();
+	    try
+	    {
+		validate(Age);
+	    }
+	    catch(Exception o)
+	    {
+		System.out.println("CUSTOM EXCEPTION CAUGHT!");
+	    }	
+	    System.out.println("Do you want to avail food?\n1-yes\n 2-no");
+	    
 	    ans_food=input.nextInt();
 	    b[i].food_avail(ans_food,e_classfood);
 	    if(ans_food==1)
@@ -178,9 +201,14 @@ public class Main{
         }
 	System.out.println("Hello Economy Passengers!");
         System.out.println("Please check your ids for Economy class");
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) {
 	    
-	    
+	    //int n = 8; // Number of threads 
+        	
+        
+            welcome object = new welcome(); 
+            object.start(); 
+      
             System.out.print(e_seat_id[i] + "-");
             System.out.println(e[i].seat);
 	    System.out.println("Do you want to avail food?\n1-yes\n 2-no");
@@ -196,6 +224,7 @@ public class Main{
 		
 	
 	}
+}
 	
 	Cargo.luggage();
 	obj3.cargo();
@@ -204,12 +233,19 @@ public class Main{
 	Cost obj4=new Cost();
 	obj4.b_price();
 	obj4.e_price();
+	 
 
-		
+
+
 	
 	
 
-    } // End of main
+ } // End of main
+static void validate(int age)throws InvalidAgeException
+{  
+     	if(age<-1)  
+      		throw new InvalidAgeException("not valid");   
+} 
 } // End of class
 class Cargo extends Customer
 {
@@ -272,7 +308,7 @@ class Select extends Date
 		String date=input.next();
 	}
 }
-interface Price
+/*interface Price
 {
 	float convenient_fee=500;
 	public void b_price();
@@ -294,5 +330,11 @@ class Cost implements Price
 		float total=economy_price + gst;
 		System.out.println("Price of each seat of economics class:"+total);
 	}
-}
-	
+}*/
+class InvalidAgeException extends Exception
+{
+	InvalidAgeException(String s)
+	{
+		super(s);
+	}
+}	
