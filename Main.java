@@ -131,8 +131,7 @@ public class Main{
     {
 	int n = 2; // Number of threads 
         
-	//welcome obj5=new welcome();
-	//obj5.msg();
+	
 	Cargo obj3=new Cargo();
 	for(int i=0;i<args.length;i++)
 	{
@@ -171,9 +170,7 @@ public class Main{
 	System.out.println("Hello Business Passengers!");
         System.out.println("Please check your ids and seat numbers for Business class");
         for (int i = 0; i < 2; i++) {
-	    //b[i].readName();
-	     welcome object = new welcome(); 
-            object.start(); 
+	    
             System.out.print(b_seat_id[i] + "-");
 	    Scanner input=new Scanner(System.in);
             System.out.println(b[i].seat);
@@ -206,8 +203,7 @@ public class Main{
 	    //int n = 8; // Number of threads 
         	
         
-            welcome object = new welcome(); 
-            object.start(); 
+            
       
             System.out.print(e_seat_id[i] + "-");
             System.out.println(e[i].seat);
@@ -258,11 +254,11 @@ class Cargo extends Customer
 	}
 	static void luggage()
 	{
-		System.out.println("Enter luggage weight:");
-		Scanner input=new Scanner(System.in);
-		w=input.nextInt();
-	        cg=cg-w;
-		System.out.println("Balance weight:"+cg);
+		welcome object=new welcome();
+		object.start();
+		welcome ob1=new welcome();
+		ob1.start();
+		
 	}
 	static void cargo()
 	{
